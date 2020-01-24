@@ -1,9 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxGui.h"
-#include "ofxOpenCv.h"
-#include "opencv.hpp"
+#include "Camera.hpp"
+#include "SettingsGUI.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -25,23 +24,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
     private:
-        // Camera Feed
-        ofVideoGrabber _VideoGrabber;
-        ofPixels _VideoInverted;
-        ofTexture _VideoTexture;
-        const int _CamWidth = 640;
-        const int _CamHeight = 480;
-    
-        ofxCvColorImage _priorImage;
-        ofxCvColorImage _currentImage;
-        ofPixels _smoothedPixels;
-        //cv2::Mat _pixelsMat;
-    //GUI:
-        ofxPanel _gui;
-        ofParameter<float> _smoothing;
-        ofParameter<float> _gain;
-        ofParameter<std::string> _fileName;
-        ofxButton _saveImage;
-        ofParameterGroup _parameters;
-    
+        Camera _camera;
+
+        SettingsGUI _gui;
 };
