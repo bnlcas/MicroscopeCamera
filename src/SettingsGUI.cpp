@@ -26,9 +26,7 @@ void SettingsGUI::Update()
     if(_saveImage)
     {
         ofLogNotice() << "Saving: " << _fileName.get();
-        ofImage img;
-        img.setFromPixels(_camera->GetPixels());
-        img.save(_fileName.get());
+        _camera->SaveImage(_fileName.get());
     }
 }
 

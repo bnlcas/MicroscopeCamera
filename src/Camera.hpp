@@ -28,6 +28,8 @@ public:
     
     ofPixels GetPixels();
     
+    void SaveImage(std::string filename);
+    
 private:
     const int _CamWidth = 640;
     const int _CamHeight = 480;

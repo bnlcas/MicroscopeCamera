@@ -39,7 +39,6 @@ void Camera::Update()
     
     if(_VideoGrabber.isFrameNew()){
         ofPixels & pixels = _VideoGrabber.getPixels();
-
         if(_smoothedPixels.size() == 0)
         {
             _smoothedPixels = _VideoGrabber.getPixels();
@@ -47,20 +46,20 @@ void Camera::Update()
         float alpha = (1.0f - _settings->smoothing);
         float beta = _settings->smoothing;
         float gain = _settings->gain;
-        //float max = 255.0f;
 
         for(size_t i = 0; i < _smoothedPixels.size(); i++){
             float pixelval = alpha * gain * pixels[i] + beta * _smoothedPixels[i];
             _smoothedPixels[i] = std::min(pixelval, 255.0f);
         }
-        _VideoTexture.loadData(_smoothedPixels);
+        //_VideoTexture.loadData(_smoothedPixels);
         _currentImage.setFromPixels(_smoothedPixels);
     }
 }
 
 void Camera::Render()
 {
-    _VideoTexture.draw(20 , 20, _CamWidth, _CamHeight);
+    _currentImage.draw(20 , 20, _CamWidth, _CamHeight);
+    //_VideoTexture.draw(20 , 20, _CamWidth, _CamHeight);
 }
 
 void Camera::UpdateSettings(CameraSettings settings)
@@ -71,5 +70,12 @@ void Camera::UpdateSettings(CameraSettings settings)
 ofPixels Camera::GetPixels()
 {
     return _smoothedPixels;
+}
+
+void Camera::SaveImage(std::string filename)
+{
+    ofImage img;
+    img.setFromPixels(_currentImage.getPixels());
+    img.save(filename);
 }
 
