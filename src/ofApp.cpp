@@ -3,22 +3,21 @@
 void ofApp::setup(){
     _camera.Setup();
     
-    _gui.InitializeGUI(& _camera);
-
+    _gui.InitializeGUI(_camera);
+    _camera.UpdateSettings(_gui.GetSettings());
     ofSetVerticalSync(true);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    ofBackground(100, 100, 100);
-    
-    _camera.Update();
-    
     _gui.Update();
+    _camera.UpdateSettings(_gui.GetSettings());
+    _camera.Update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofBackground(100, 100, 100);
     ofSetHexColor(0xffffff);
     _camera.Render();
     _gui.Render();

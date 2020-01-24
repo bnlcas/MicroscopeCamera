@@ -18,11 +18,13 @@ class SettingsGUI
 public:
     SettingsGUI(){};
 
-    void InitializeGUI(Camera * camera);
+    void InitializeGUI(Camera camera);
     
     void Update();
     
     void Render();
+    
+    CameraSettings GetSettings();
     
 private:
     ofxPanel _gui;
@@ -34,7 +36,7 @@ private:
     ofxButton _saveImage;
     ofParameterGroup _parameters;
     
-    Camera _camera;
+    Camera * _camera;
     
     CameraSettings _settings;
 };

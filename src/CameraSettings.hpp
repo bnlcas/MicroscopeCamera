@@ -17,6 +17,6 @@ struct CameraSettings
     float g;
     float b;
     float smoothing;
-}
+};
 
 #endif /* CameraSettings_hpp */

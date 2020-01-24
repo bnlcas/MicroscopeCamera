@@ -44,19 +44,15 @@ void Camera::Update()
         {
             _smoothedPixels = _VideoGrabber.getPixels();
         }
-        float alpha = (1.0f - _settings.smoothing);
-        float beta = _settings.smoothing;
-        float gain = _settings.gain;
-        float max = 0.0f;
+        float alpha = (1.0f - _settings->smoothing);
+        float beta = _settings->smoothing;
+        float gain = _settings->gain;
+        //float max = 255.0f;
+
         for(size_t i = 0; i < _smoothedPixels.size(); i++){
             float pixelval = alpha * gain * pixels[i] + beta * _smoothedPixels[i];
             _smoothedPixels[i] = std::min(pixelval, 255.0f);
-            if(_smoothedPixels[i] > max)
-            {
-                max = _smoothedPixels[i];
-            }
         }
-
         _VideoTexture.loadData(_smoothedPixels);
         _currentImage.setFromPixels(_smoothedPixels);
     }
@@ -69,7 +65,7 @@ void Camera::Render()
 
 void Camera::UpdateSettings(CameraSettings settings)
 {
-    _settings = settings;
+    _settings = & settings;
 }
 
 ofPixels Camera::GetPixels()

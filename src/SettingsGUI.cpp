@@ -8,7 +8,7 @@
 #include "SettingsGUI.hpp"
 
 
-void SettingsGUI::InitializeGUI(Camera * camera)
+void SettingsGUI::InitializeGUI(Camera camera)
 {
     _camera = & camera;
     _gui.setup();
@@ -22,11 +22,12 @@ void SettingsGUI::InitializeGUI(Camera * camera)
 
 void SettingsGUI::Update()
 {
+    _settings = {_gain.get(), 1.0f, 1.0f, 1.0f, _smoothing.get()};
     if(_saveImage)
     {
         ofLogNotice() << "Saving: " << _fileName.get();
         ofImage img;
-        img.setFromPixels(_camera.GetPixels());
+        img.setFromPixels(_camera->GetPixels());
         img.save(_fileName.get());
     }
 }
@@ -34,4 +35,9 @@ void SettingsGUI::Update()
 void SettingsGUI::Render()
 {
     _gui.draw();
+}
+
+CameraSettings SettingsGUI::GetSettings()
+{
+    return _settings;
 }

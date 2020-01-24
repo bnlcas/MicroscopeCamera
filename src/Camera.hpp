@@ -32,7 +32,7 @@ private:
     const int _CamWidth = 640;
     const int _CamHeight = 480;
     
-    CameraSettings _settings;
+    CameraSettings * _settings;
     
     ofVideoGrabber _VideoGrabber;
 
