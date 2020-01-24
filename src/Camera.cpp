@@ -45,9 +45,9 @@ void Camera::Update()
         }
         float alpha = (1.0f - _settings->smoothing);
         float beta = _settings->smoothing;
-        float gain = _settings->gain;
-
+        float gain;// = _settings->gain;
         for(size_t i = 0; i < _smoothedPixels.size(); i++){
+            gain = CalculateGain(i % 3);
             float pixelval = alpha * gain * pixels[i] + beta * _smoothedPixels[i];
             _smoothedPixels[i] = std::min(pixelval, 255.0f);
         }
@@ -79,3 +79,20 @@ void Camera::SaveImage(std::string filename)
     img.save(filename);
 }
 
+float Camera::CalculateGain(int channel)
+{
+    float gain;
+    if(channel == 0)
+    {
+        gain = _settings->gain * _settings->r;
+    }
+    else if (channel == 1)
+    {
+        gain = _settings->gain * _settings->g;
+    }
+    else
+    {
+        gain = _settings->gain * _settings->b;
+    }
+    return gain;
+}

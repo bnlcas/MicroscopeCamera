@@ -43,6 +43,8 @@ private:
     ofTexture _VideoTexture;
 
     ofxCvColorImage _currentImage;
+    
+    float CalculateGain(int channel);
 };
 
 

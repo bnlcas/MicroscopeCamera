@@ -31,6 +31,9 @@ private:
     
     ofParameter<float> _smoothing;
     ofParameter<float> _gain;
+    ofParameter<float> _redBalance;
+    ofParameter<float> _greenBalance;
+    ofParameter<float> _blueBalance;
     
     ofParameter<std::string> _fileName;
     ofxButton _saveImage;
