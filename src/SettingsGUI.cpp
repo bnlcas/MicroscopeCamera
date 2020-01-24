@@ -20,12 +20,18 @@ void SettingsGUI::InitializeGUI(Camera camera)
     _gui.add(_saveImage.setup("Save Image"));
     _gui.add(_fileName.set("filename.png"));
     
-    _settings = {_gain.get(), _redBalance.get(), _greenBalance.get(), _blueBalance.get(), _smoothing.get()};
+    //_settings.gain = _gain.get();
+    //_settings.r = _redBalance.get();
+    //_settings.g =  _greenBalance.get();
+    //_settings.b =  _blueBalance.get();
+    //_settings.smoothing =  _smoothing.get();
+    //_settings = { _gain.get(), _redBalance.get(), _greenBalance.get(), _blueBalance.get(), _smoothing.get()};
+    UpdateSettings();
 }
 
 void SettingsGUI::Update()
 {
-    _settings = {_gain.get(), _redBalance.get(), _greenBalance.get(), _blueBalance.get(), _smoothing.get()};
+    UpdateSettings();
     if(_saveImage)
     {
         ofLogNotice() << "Saving: " << _fileName.get();
@@ -41,4 +47,13 @@ void SettingsGUI::Render()
 CameraSettings SettingsGUI::GetSettings()
 {
     return _settings;
+}
+
+void SettingsGUI::UpdateSettings()
+{
+    _settings.gain = _gain.get();
+    _settings.r = _redBalance.get();
+    _settings.g = _greenBalance.get();
+    _settings.b = _blueBalance.get();
+    _settings.smoothing = _smoothing.get();
 }

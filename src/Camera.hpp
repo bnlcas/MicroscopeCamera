@@ -7,6 +7,8 @@
 
 #ifndef Camera_hpp
 #define Camera_hpp
+#define CAM_WIDTH 640
+#define CAM_HEIGHT 480
 
 #include "CameraSettings.hpp"
 #include <stdio.h>
@@ -31,8 +33,7 @@ public:
     void SaveImage(std::string filename);
     
 private:
-    const int _CamWidth = 640;
-    const int _CamHeight = 480;
+
     
     CameraSettings * _settings;
     

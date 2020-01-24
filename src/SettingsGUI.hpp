@@ -27,6 +27,8 @@ public:
     CameraSettings GetSettings();
     
 private:
+    void UpdateSettings();
+
     ofxPanel _gui;
     
     ofParameter<float> _smoothing;

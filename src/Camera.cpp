@@ -26,11 +26,11 @@ void Camera::Setup()
     _VideoGrabber.setDeviceID(0);
     _VideoGrabber.setDesiredFrameRate(30);
     
-    _VideoGrabber.initGrabber(_CamWidth, _CamHeight);
+    _VideoGrabber.initGrabber(CAM_WIDTH, CAM_HEIGHT);
     
-    _VideoTexture.allocate(_CamWidth, _CamHeight, OF_PIXELS_RGB);
+    _VideoTexture.allocate(CAM_WIDTH, CAM_HEIGHT, OF_PIXELS_RGB);
     
-    _currentImage.allocate(_CamWidth, _CamHeight);
+    _currentImage.allocate(CAM_WIDTH, CAM_HEIGHT);
 }
 
 void Camera::Update()
@@ -58,7 +58,7 @@ void Camera::Update()
 
 void Camera::Render()
 {
-    _currentImage.draw(20 , 20, _CamWidth, _CamHeight);
+    _currentImage.draw(20 , 20, CAM_WIDTH, CAM_HEIGHT);
     //_VideoTexture.draw(20 , 20, _CamWidth, _CamHeight);
 }
 
